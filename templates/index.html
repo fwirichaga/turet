@@ -1,0 +1,363 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    
+<!-- Material Admin - CDC ENglish  -->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TUTOR DE PROYECTOS</title>
+
+        <!-- Vendor CSS -->
+        <link href='{% static "vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/animate.css/animate.min.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"%}' rel="stylesheet">        
+            
+        <!-- CSS -->
+        <link href='{% static "css/app.min.1.css" %}' rel="stylesheet">
+        <link href='{% static "css/app.min.2.css" %}' rel="stylesheet">
+        <link href='{% static "css/estilo_formulario.css" %}' rel="stylesheet" >
+        <link href='{% static "css/contenedores.css" %}' rel="stylesheet" >
+
+        <style>
+        [data-current-skin="azul"] {
+        background-color: #08298A;
+        }
+        .sobre{
+        position:float;
+        
+        }      
+
+        </style>
+        
+    </head>
+    <body>
+<body>
+      <header id="header" class="clearfix" data-current-skin="azul">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+
+<!--TITULO DEL BANER DE LA PAGINA-->
+                <li class="logo hidden-xs">
+                   <a href="#">TUTOR DE PROYECTOS DE INVESTIGACION</a>
+                </li>
+
+         
+        </header>
+        
+        <section id="main" data-layout="layout-1" class="sobre">
+            <aside id="sidebar" class="sidebar c-overflow" class="class="sobre"">
+           
+
+<!--TEXTO Y FUNCION QUE SE EJECUTAN DEL MENU LATERAL-->
+                <ul class="main-menu">
+                   
+                    <li >
+                        <a href='{% url "login"%}'><i class="zmdi zmdi-account"></i>Iniciar Sesión</a>
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "conocenos"%}'><i class="zmdi zmdi-account"></i>Conocenos</a>
+                    </li>
+                    
+                   
+                </ul>
+            </aside>
+
+            <section id="content">
+                <div class="container">
+                    <div class="block-header">
+   
+                    </div>
+                    
+                    <div class="card">
+                   
+                        <!--<div class="card-header">
+                            <center><img src="img/bannerConLogo.png" alt=""></center>
+                        </div>-->
+
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                </ol>
+                              
+                <!--CONTENEDOR DONDE SE SITUA EL SLIDE DEL INDEX-->
+
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src='{% static "img/a3.png"%}' alt=""><!--RUTA DONDE SE ENCUETRA NUESTRA PRIMERA IMAGEN QUE COLOCAREMOS EN EL SLIDE-->
+                                        <div class="carousel-caption">
+                                            <h3></h3>
+                                    </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <img src='{% static "img/c-1.jpg"%}' alt=""><!--RUTA DONDE SE ENCUETRA NUESTRA SEGUNDA IMAGEN QUE COLOCAREMOS EN EL SLIDE-->
+                                 
+                                    </div>
+                                    <div class="item">
+                                        <img src='{% static "img/a2.png"%}' alt=""><!--RUTA DONDE SE ENCUETRA NUESTRA TERCERA IMAGEN QUE COLOCAREMOS EN EL SLIDE-->
+                                      
+                                    </div>
+                                </div>
+                              
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="zmdi zmdi-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="zmdi zmdi-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Siguiente</span>
+                                </a>
+                            </div>
+                      
+                    </div>
+                    
+                      
+<!--secciones-->
+
+<!--SECCIONE EN EL CUAL DESCRIBIMOS AL SISTEMA, EN ELLA SE MUESTRA EL TEXTO REDUCIDO-->
+<div class="row m-t-25">
+                        <div class="col-sm-4">
+                            <div class="card pt-inner">
+                                <div class="pti-header bgm-azul">
+                                     
+                                    <h2 class="zmdi zmdi-accounts-alt"></h2>
+
+                                <!--TITULO DEL CONTENEDOR-->
+                                    <div class="ptih-title">¿Quienes Somos?</div>
+                                </div>
+                
+                                <div class="pti-body">
+                                    <div class="ptib-item">
+
+                                    <!--TEXTO INCOMPLETO QUE VISUALIZA EL USUARIO EN EL CONTENEDOR-->
+                                        <p>El grupo lo conforman tres investigadores de diferentes Instituciones Públicas de México, con el propósito de crear herramientas tecnológicas que ayuden al estudiante a mejorar... </p>
+
+                                        <!--BOTON QUE LLAMA A LAVENTANA EMERGENTE DONDE SE ENCUENTRA EL TEXTO COMPLETO-->
+                                        <a href="#ventanaM" ><button class="btn btn-primary btn-sm hec-button"> Leer Más...</button></a>
+                                    </div>
+                                  
+                                </div>
+                
+                                <div class="pti-footer">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="col-sm-4">
+                            <div class="card pt-inner">
+                                <div class="pti-header bgm-azul">
+                                   <h2 class="zmdi zmdi-graduation-cap"></h2>
+
+                                   <!--TITULO DEL CONTENEDOR-->
+                                    <div class="ptih-title">¿Que es el TUTOR DE PROYECTOS?</div>
+                                </div>
+                
+                                <div class="pti-body">
+                                    <div class="ptib-item">
+
+                                    <!--TEXTO INCOMPLETO QUE VISUALIZA EL USUARIO EN EL CONTENEDOR-->
+                                       <p>El tutor es una herramienta diseñada para evaluar siete secciones de una tesis (planteamiento del problema, justificación, objetivo general, preguntas de investigación, hipótesis, metodología...</p>
+
+                                       <!--BOTON QUE LLAMA A LAVENTANA EMERGENTE DONDE SE ENCUENTRA EL TEXTO COMPLETO-->
+                                       <a href="#ventanaM1" ><button class="btn btn-primary btn-sm hec-button"> Leer Más...</button></a>
+                                    </div>
+                                    
+                                </div>
+                
+                                <div class="pti-footer">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="col-sm-4">
+                            <div class="card pt-inner">
+                                <div class="pti-header bgm-azul">
+                                   <h2 class="zmdi zmdi-check"></h2>
+
+                                   <!--TITULO DEL CONTENEDOR-->
+                                    <div class="ptih-title">Historia y Objetivo</div>
+                                </div>
+                
+                                <div class="pti-body" >
+                                    <div class="ptib-item" >
+
+                                    <!--TEXTO INCOMPLETO QUE VISUALIZA EL USUARIO EN EL CONTENEDOR-->
+                                    <p>La primera versión de la herramienta TuReT 1.0 fue utilizada en una prueba piloto en 2013, esta primera versión solo contemplaba cuatro secciones de una tesis para su evaluación...</p>
+
+                                     <!--BOTON QUE LLAMA A LAVENTANA EMERGENTE DONDE SE ENCUENTRA EL TEXTO COMPLETO-->
+                                    <a href="#ventanaM2" ><button class="btn btn-primary btn-sm hec-button"> Leer Más...</button></a>
+                                    </div>
+                                    
+                                </div>
+                
+                                <div class="pti-footer">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+             <!--SECCION DE VENTANAS EMERGENTES CADA VENTANA CORRESPONDE A UNA SECCION EN ESPECIFICA Y ESTAN RELACIONADAS MEDIANTE EL ID DE LA VENTANA-->   
+                <section id="ventanaM"><!--ID VENTANA-->
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <!--TITULO Y TEXTO COMPLETO QUE VISUALIZA EL USUARIO-->
+                            <p style="font-weight: bold;">Quienes Somos</p>
+                   
+                            <p>El grupo lo conforman tres investigadores de diferentes Instituciones Públicas de México, con el propósito de crear herramientas tecnológicas que ayuden al estudiante a mejorar la escritura de sus borradores de tesis. También han colaborado académicos y estudiantes en este proyecto, en tareas como recolección de tesis, puesta en línea de las herramientas y corpus, además de formar parte del grupo de anotadores (académicos).
+                            Si deseas participar en este proyecto, no dudes en contactarnos.  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+
+                <section id="ventanaM1"><!--ID VENTANA-->
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Tutor para la Redacción de Tesis TuReT 2.0</p>
+                   
+                            <p>El tutor  es  una  herramienta  diseñada para evaluar siete secciones de una tesis (planteamiento del problema, justificación, objetivo general, preguntas de investigación, hipótesis, metodología, y conclusiones), con el objeto de medir la Riqueza Léxica. Ésta, contempla tres dimensiones de evaluación: variedad, densidad y sofisticación. </p>
+                            <p>Variedad: Se refiere a la variedad te términos utilizados en la sección evaluada. Busca que el estudiante haga uso de recursos como sinónimos, pronombres, por mencionar algunos.</p>
+                            <p>Densidad: Calcula la proporción  de términos de contenido (aquellos que dan sentido a la oración), respecto al total de términos utilizados.</p> 
+                            <P>Sofisticación: Busca que el estudiante utilice términos no comunes. Específicamente se utiliza una lista de mil términos más comunes, proporcionado por la Real Academia Española.</p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+                <section id="ventanaM2"><!--ID VENTANA-->
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Historia</p>
+                   
+                            <p>La primera versión de la herramienta TuReT 1.0 fue utilizada en una prueba piloto en 2013, esta primera versión solo contemplaba cuatro secciones de una tesis para su evaluación. Actualmente contempla siete secciones.</p>
+                            <p>Esta herramienta se desprende de los trabajos de Investigación del Proyecto ALBIEL: Análisis Lingüístico de Borradores de Investigación, el cual va dirigido a evaluar tesis de estudiantes del área de Tecnologías de la Información escritos en Español.</p>
+
+                            </br>
+
+                            <P style="font-weight: bold;">Propósito</P>
+
+                            <p>Apoyar al estudiante en la redacción de la tesis, especialmente en etapas tempranas, utilizando técnicas de Procesamiento de Lenguaje Natural que permitan evaluar la Riqueza Léxica del texto. </P>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+        
+        </section>
+        
+ <!--TEXTO DEL PIE DE PAGINA-->       
+        <footer id="footer">
+            Copyright &copy; 2016 TUTOR DE PROYECTOS DE INVESTIGACION
+            
+          <!--  <ul class="f-menu">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="login.php">Registrate</a></li>
+                <li><a href="Desarrolladores.html">Acerca de</a></li>
+               
+            </ul>-->
+        </footer>
+
+        <!-- Page Loader 
+        <div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+
+                <p>Porfavor Espera...</p>
+            </div>
+        </div>
+        -->
+        
+       
+        <!-- Javascript Libraries -->
+        <script src='{% static "vendors/bower_components/jquery/dist/jquery.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"%}'></script>
+        
+        <script src='{% static "vendors/bower_components/flot/jquery.flot.js"%}'></script>
+        <script src='{% static "vendors/bower_components/flot/jquery.flot.resize.js"%}'></script>
+        <script src='{% static "vendors/bower_components/flot.curvedlines/curvedLines.js"%}'></script>
+        <script src='{% static "vendors/sparklines/jquery.sparkline.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"%}'></script>
+        
+        <!--<script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>-
+        <script src="vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>-->
+        <script src='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"%}'></script>
+        
+                
+        <script src='{% static "js/flot-charts/curved-line-chart.js"%}'></script>
+        <script src='{% static "js/flot-charts/line-chart.js"%}'></script>
+        <script src='{% static "js/charts.js"%}'></script>
+        
+        <script src='{% static "js/charts.js"%}'></script>
+        <script src='{% static "js/functions.js"%}'></script>
+        <script src='{% static "js/demo.js"%}'></script>
+        <script>
+        $(document).ready(function(){
+            {% block progreso %}
+            {% endblock %}
+    });
+    </script>
+
+        
+    </body>
+  
+
+</html>

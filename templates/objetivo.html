@@ -1,0 +1,522 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+    
+<!-- Mirrored from byrushan.com/projects/ma/1-5-2/jquery/form-components.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Mar 2016 20:58:50 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TUTOR | Análisis</title>
+
+        <!-- Vendor CSS -->
+        <link href='{% static "vendors/bower_components/animate.css/animate.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"%}' rel="stylesheet">        
+        <link href='{% static "vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/nouislider/distribute/jquery.nouislider.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/farbtastic/farbtastic.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/chosen/chosen.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/summernote/dist/summernote.css"%}' rel="stylesheet">
+
+        <script src='{% static "alert/dist/alertify.min.js"%}'></script>
+        <link rel="stylesheet" href='{% static "alert/dist/alertify.core.css"%}' />
+        <link rel="stylesheet" href='{% static "alert/dist/alertify.default.css"%}' id="toggleCSS" />
+
+
+        <!-- CSS -->
+        <link href='{% static "css/app.min.1.css"%}' rel="stylesheet">
+        <link href='{% static "css/app.min.2.css"%}' rel="stylesheet">
+        <link href='{% static "css/estilo_formulario.css"%}' rel="stylesheet">
+        <link href='{% static "css/analisis.css"%}' rel="stylesheet">
+        
+        <!-- Following CSS are used only for the Demp purposes thus you can remove this anytime. -->
+
+    </head>
+    
+    <body>
+        
+            <header id="header" class="clearfix" data-current-skin="azul">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+
+                <li class="logo hidden-xs">
+                    <a href="#">TUTOR DE PROYECTOS DE INVESTIGACIÓN</a>
+                </li>
+
+                <a href='{% url "principal"%}'><li id="es" class="logo hidden-xs">Regresar</li></a>
+
+
+            <!-- Top Search Content -->
+         
+        </header>
+
+
+        <!--Menu lateral-->
+        
+        <section id="main" data-layout="layout-1">
+           <aside id="sidebar" class="sidebar c-overflow">
+           
+
+                <ul class="main-menu">
+                   
+              
+                
+
+                    <li >
+                        <a href='{% url "hipotesis"%}'><i class="zmdi zmdi-book"></i> Evaluación de Hipótesis</a>
+                        
+                    </li>
+
+
+                    <li >
+                    
+                        <a href='{% url "justificacion"%}'><i class="zmdi zmdi-book"></i> Evaluación de Justificación</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "planteamiento"%}'><i class="zmdi zmdi-book"></i> Evaluación de Planteamiento</a>
+                        
+                    </li>
+
+
+                   <li >
+                        <a href='{% url "preguntas"%}'><i class="zmdi zmdi-book"></i> Evaluación de Preguntas</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "metodologia"%}'><i class="zmdi zmdi-book"></i> Evaluación de Metodología</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "conclusion"%}'><i class="zmdi zmdi-book"></i> Evaluación de Conclusión</a>
+
+
+
+                    <li >
+                        <a  id="cierre" onclick="JSalert()"><i class="zmdi zmdi-power"></i> Cerrar Sesión</a>
+                        
+                    </li>
+
+<script>
+function JSalert(){
+// A confirm dialog
+alertify.confirm("¿Estas seguro que quieres Cerrar Sesión?", function (e) {
+    if (e) {
+         window.location='{% url "inicio"%}';
+        alertify.alert("Regresa pronto");
+    } else {
+        alertify.alert("Continua Trabajando");
+    }
+});
+}
+</script>
+                </ul>
+            </aside>
+                
+
+            <!--Secciones para analizar diversas operaciones de lematizacion -->
+
+                <section id="content">
+                <div class="container">
+                    <div class="block-header">
+   
+                    </div>
+                    
+                    <div class="card">
+                    
+                    <div class="card">
+                        <div class="card-header">
+
+                            <h2>EVALUACIÓN DE OBJETÍVO</h2>
+                        </div>
+                        
+                        <div class="card-body card-padding">
+                            
+                        <form name="form_texto" action="{% url 'analisis_objetivo' %}" method="POST">{% csrf_token %}
+
+
+                            <p class="f-500 c-black m-b-20"> Por favor introduce tu diálogo en el recuadro</p>
+                           
+                            <center><textarea class="analisis" {{ form.form_texto}} name="form_texto" id="textoremplazar" onclick="return quitarFormato();"> {{verid.texto}}</textarea></center>
+                            <!--<input type"text" {{ form.form_texto}} name="form_texto" >{{verid.texto}}</input>-->
+                           
+                            
+                            <br/>
+                            <br/>
+
+                            <div class="m-b-10">
+                                <!--<input class="btn btn-success btn-sm" type="submit" value="Analizar">-->
+                                <button type="submit"class="btn btn-success btn-sm">Analizar</button>
+                            </div>
+                        </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            </section>
+
+
+
+             <!-- Tabs -->
+                        <section id="content">
+                             <div class="container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Resultado de los análisis de<small>De click en el boton para ver sus resultados...</small></h2>
+                            </div>
+                            
+                            
+                                <ul class="tab-nav tn-justified tn-icon" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a class="col-sx-4" href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab">
+                                            <i class="zmdi zmdi-star-outline icon-tab"></i>
+                                            <p>Densidad</p>
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a class="col-xs-4" href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab">
+                                            <i class="zmdi zmdi-star-half icon-tab"></i>
+                                            <p>Sofisticación</p>
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a class="col-xs-4" href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab">
+                                            <i class="zmdi zmdi-star icon-tab"></i>
+                                            <p>Variedad</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                
+                                <div class="tab-content p-20">
+                                    <div role="tabpanel" class="tab-pane animated fadeIn in active" id="tab-1">
+                                        
+
+
+                                            <style>
+                                            .color{
+                                            color: blue;
+        
+                                            }
+                                            </style>
+                                        
+                                            <div class="card-header">
+
+                                                <h2>Evaluación de Densidad</h2>
+                                            </div>
+                        
+                                            <div class="card-body card-padding">
+                            
+                                                    <center><div id="ver"></div></center>
+                                                    <br/>
+                                                    <br/>
+
+                                                    <p class="color">{{resultado}}</p>
+                                                    <p class="color">{{resu}}</p>
+                            
+                                                    <br/>
+                                                    <br/>
+
+                                            <div class="m-b-10">
+                                <!--<button class="btn btn-success btn-sm hec-save">Save</button>-->
+                                                <button class="btn btn-primary btn-sm hec-button btn btn-success btn-sm " onclick = "ver(); colorear();"> Detalles</button>
+                                            </div>
+
+                                            </div>
+
+                                     
+
+
+                                    </div>
+                                    
+                                    <div role="tabpanel" class="tab-pane animated fadeIn" id="tab-2">
+                                        
+                                            <div class="card-header">
+
+                                                <h2>Evaluación de Sofisticación</h2>
+                                            </div>
+                        
+                                            <div class="card-body card-padding">
+                            
+                                                    <center><div id="ver2"></div></center>
+                                                    <br/>
+                                                    <br/>
+                                                    <p class="color">{{resultado2}}</p>
+                                                    <p class="color">{{resu2}}</p>
+
+                                            </div>
+
+                                       
+                                    </div>
+                                    
+                                    <div role="tabpanel" class="tab-pane animated fadeIn" id="tab-3">
+                                       
+                                            <div class="card-header">
+
+                                                <h2>Evaluación de Variedad</h2>
+                                            </div>
+                        
+                                            <div class="card-body card-padding">
+                            
+                                                    <center><div id="ver3"></div></center>
+                                                    <br/>
+                                                    <br/>
+                                                    <p class="color">{{resultado3}}</p>
+                                                    <p class="color">{{resu3}}</p>                                                    
+                                            </div>
+
+                                       
+                                    </div>
+                                </div>
+                           
+                        </div>
+                        </div>
+                        </section>
+        
+
+        <!--Footer (Pie de página) -->
+        
+        <footer id="footer">
+            Copyright &copy; 2016 TUTOR DE PROYECTOS DE INVESTIGACIÓN
+
+            </ul>
+        </footer>
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+
+                <p>Porfavor espera...</p>
+            </div>
+        </div>
+
+
+        <!-- Javascript Libraries -->
+        <script src='{% static "vendors/bower_components/jquery/dist/jquery.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"%}'></script>
+        
+        <script src='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/Waves/dist/waves.min.js"%}'></script>
+        <!--<script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>-->
+        <script src='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"%}'></script>
+        
+        <script src='{% static "vendors/bower_components/moment/min/moment.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"%}'></script>
+        <script src='{% static "vendors/bower_components/nouislider/distribute/jquery.nouislider.all.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/typeahead.js/dist/typeahead.bundle.min.js"%}'></script>
+        <script src='{% static "vendors/summernote/dist/summernote-updated.min.js"%}'></script>
+
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+        
+        <script src='{% static "vendors/bower_components/chosen/chosen.jquery.min.js"%}'></script>
+        <script src='{% static "vendors/fileinput/fileinput.min.js"%}'></script>
+        <script src='{% static "vendors/input-mask/input-mask.min.js"%}'></script>
+        <script src='{% static "vendors/farbtastic/farbtastic.min.js"%}'></script>
+        
+        
+        <script src='{% static "js/functions.js"%}'></script>
+        <script src='{% static "js/demo.js"%}'></script>
+
+        <script type="text/javascript">
+
+        function quitarFormato(){
+        //Obtenemos el valor que tiene el div identificado con textoremplazar
+        var textoEliminarFormato = document.getElementById("textoremplazar");
+        // Esta funcion es soportada en Internet Explorer
+        if(textoEliminarFormato.innerText != undefined){
+        //Remplazomos lo que tenemos en el contenedor por el texto sin formato
+        textoEliminarFormato.innerHTML=textoEliminarFormato.innerText;
+        }else{
+        // Esta funcion es soportada en Mozilla Firefox Netscape
+        ////Remplazomos lo que tenemos en el contenedor por el texto sin formato
+        textoEliminarFormato.innerHTML=textoEliminarFormato.textContent;
+        }
+        }
+
+
+        function ver(){
+        var ch=document.getElementById('ver');
+        ch.style.display='inline' ;
+
+        var ch2=document.getElementById('ver2');
+        ch2.style.display='inline' ;
+
+        var ch3=document.getElementById('ver3');
+        ch3.style.display='inline' ;
+
+        }
+        
+        
+        function LimpiarSaltosDeLinea(){
+			//texto recibe el contenido del textarea
+			var texto = document.getElementById('textoremplazar').value
+			//texto2 es el resultado de procesar texto
+			var texto2 = ""
+			for(var i=0; i<texto.length; i++){
+				if(texto.charAt(i) == '\n')
+					texto2 = texto2 + " "
+				else
+					texto2 = texto2 + texto.charAt(i)
+			}
+			//texto2 es el texto sin saltos de linea
+			//el alert es para la brueba
+			
+			return texto2
+			
+		}
+
+
+
+        function colorear(){
+            
+            ColorearDensidad();
+            ColorearSofisticacion();
+            ColorearVariedad();
+        
+        
+        }
+
+
+
+        Array.prototype.in_array=function(){
+            for(var j in this){
+                if(this[j]==arguments[0]){
+                    return true;
+                }
+            }
+            return false;    
+        }
+
+        //funcion para pintar texto de diferentes colores
+        function ColorearDensidad(){
+            
+            var texto = LimpiarSaltosDeLinea();
+            var contenido = "{{contenido}}";
+            var arreglo = contenido.split(' ')
+            //eliminar signos de puntuación del texto original
+            texto = texto.replace('<br/>',' ')
+            texto = texto.replace(/\.|:|,|;|{|}|\[|\]|\+|\*|\?|\¿|\¡|\!|\(|\)|\/|%|&|\$|#|"|-|_/gi,' ');
+            //convertir texto original en arreglo
+            var original = texto.split(' ');
+    
+            //imprimir texto original remarcando las palabras del arreglo
+
+            var azul=''
+            for(i=0; i<original.length; i++){
+                //document.write(arreglo[i])
+                
+                if(arreglo.in_array(original[i])){
+                    
+                    azul= azul+original[i].fontcolor("black") + ' ';
+                    document.getElementById("ver").innerHTML = azul;
+                    //document.write(original[i].fontcolor("red") + ' ');
+                }else{
+                    
+                    //document.write(original[i].fontcolor("black") + ' ');
+                    azul= azul+original[i].fontcolor("red") + ' ';
+                    document.getElementById("ver").innerHTML = azul;
+                }
+            }
+            //document.write("</div>")
+        }
+        
+        
+        function ColorearSofisticacion(){
+            
+            var texto = LimpiarSaltosDeLinea();
+            var sofisticadas = "{{sofisticadas}}";
+            var arreglo = sofisticadas.split(' ')
+            //eliminar signos de puntuación del texto original
+            texto = texto.replace('<br/>',' ')
+            texto = texto.replace(/\.|:|,|;|{|}|\[|\]|\+|\*|\?|\¿|\¡|\!|\(|\)|\/|%|&|\$|#|"|-|_/gi,' ');
+            //convertir texto original en arreglo
+            var original = texto.split(' ');
+    
+            //imprimir texto original remarcando las palabras del arreglo
+
+            var azul=''
+            for(i=0; i<original.length; i++){
+                //document.write(arreglo[i])
+                
+                if(arreglo.in_array(original[i])){
+                    
+                    azul= azul+original[i].fontcolor("red") + ' ';
+                    document.getElementById("ver2").innerHTML = azul;
+                    //document.write(original[i].fontcolor("red") + ' ');
+                }else{
+                    
+                    //document.write(original[i].fontcolor("black") + ' ');
+                    azul= azul+original[i].fontcolor("black") + ' ';
+                    document.getElementById("ver2").innerHTML = azul;
+                }
+            }
+            //document.write("</div>")
+        }
+        
+        
+        
+        function ColorearVariedad(){
+            
+            var texto = LimpiarSaltosDeLinea();
+            var repetidas = "{{unicas}}";
+            var arreglo = repetidas.split(' ')
+            //eliminar signos de puntuación del texto original
+            texto = texto.replace('<br/>',' ')
+            texto = texto.replace(/\.|:|,|;|{|}|\[|\]|\+|\*|\?|\¿|\¡|\!|\(|\)|\/|%|&|\$|#|"|-|_/gi,' ');
+            //convertir texto original en arreglo
+            var original = texto.split(' ');
+    
+            //imprimir texto original remarcando las palabras del arreglo
+
+            var azul=''
+            for(i=0; i<original.length; i++){
+                //document.write(arreglo[i])
+                
+                if(arreglo.in_array(original[i])){
+                    
+                    azul= azul+original[i].fontcolor("red") + ' ';
+                    document.getElementById("ver3").innerHTML = azul;
+                    //document.write(original[i].fontcolor("red") + ' ');
+                }else{
+                    
+                    //document.write(original[i].fontcolor("black") + ' ');
+                    azul= azul+original[i].fontcolor("black") + ' ';
+                    document.getElementById("ver3").innerHTML = azul;
+                }
+            }
+            //document.write("</div>")
+        }
+         </script>
+        
+    
+    </body>
+
+<!-- Mirrored from byrushan.com/projects/ma/1-5-2/jquery/form-components.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Mar 2016 20:59:18 GMT -->
+</html>

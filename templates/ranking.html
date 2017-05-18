@@ -1,0 +1,258 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<!--[if IE 7]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+    <!--TITULO DE LA PESTAÑA DE LA PAGINA-->    
+        <title>Mejores Puntuaciones</title>
+        
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+        <script src='{% static "js/jquerydos.min.js"%}'></script>
+        <link href='{% static "css/app.min.1.css"%}' rel="stylesheet">
+        <link href='{% static "css/app.min.2.css"%}' rel="stylesheet">
+        <link href='{% static "css/estilo_formulario.css"%}' rel="stylesheet">
+
+
+
+        <link href='{% static "vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/animate.css/animate.min.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"%}' rel="stylesheet"> 
+        <link href='{% static "css/app.min.1.css" %}' rel="stylesheet">
+        <link href='{% static "css/app.min.2.css" %}' rel="stylesheet">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"><!--barra de progreso-->
+        <link href='{% static "css/contenedores.css" %}' rel="stylesheet" >
+        <link href='{% static "css/estilo_formulario.css" %}' rel="stylesheet" >
+        <link href='{% static "css/analisis.css"%}' rel="stylesheet">
+        
+        
+
+
+
+        <!--<link href="css/prettify.css" rel="stylesheet">
+        <link href="css/hemisu-light.css" rel="stylesheet">-->
+
+        <!--<link href='{% static "css/screen.css"%}' rel="stylesheet" media="screen"><!--puede ser-->
+
+        <link id="style" href='{% static "css/clean.css"%}' rel="stylesheet" media="screen">
+
+        
+        <style>
+            pre { 
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+
+    <header id="header" class="clearfix" data-current-skin="azul">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+
+<!--TITULO DEL BANNER DE LA PAGINA-->
+                <li class="logo hidden-xs">
+                    <a href="#">TUTOR DE PROYECTOS DE INVESTIGACION</a>
+                </li>
+
+                <a href='{% url "principal"%}'><li id="es" class="logo hidden-xs">Regresar</li></a>
+
+
+            <!-- Top Search Content -->
+         
+        </header>
+
+
+    <section id="main" data-layout="layout-1">
+           <aside id="sidebar" class="sidebar c-overflow">
+           
+
+                <ul class="main-menu">
+                   
+              
+                
+<!--TEXTO Y DIRECCIONES DEL MENU LATERAL CORRESPONDIENTES A CADA SECCION-->
+                    <li >
+                        <a href='{% url "hipotesis"%}'><i class="zmdi zmdi-book"></i> Evaluacion de Hipotesis</a>
+                        
+                    </li>
+
+                    <li >
+                    
+                        <a href='{% url "justificacion"%}'><i class="zmdi zmdi-book"></i> Evaluacion de Justificacion</a>
+                        
+                    </li>
+                    
+
+                    <li >
+                        <a href='{% url "objetivo"%}'><i class="zmdi zmdi-book"></i> Evaluacion del Objetivo</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "planteamiento"%}'><i class="zmdi zmdi-book"></i> Evaluacion del Planteamiento</a>
+                        
+                    </li>
+
+
+                   <li >
+                        <a href='{% url "preguntas"%}'><i class="zmdi zmdi-book"></i> Evaluación de Preguntas</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "metodologia"%}'><i class="zmdi zmdi-book"></i> Evaluación de Metodología</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "conclusion"%}'><i class="zmdi zmdi-book"></i> Evaluación de Conclusión</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a  id="cierre" onclick="JSalert()"><i class="zmdi zmdi-power"></i> Cerrar Sesión</a>
+                        
+                    </li>
+
+
+<script>
+function JSalert(){
+// A confirm dialog
+alertify.confirm("¿Estas seguro que quieres Cerrar Sesión?", function (e) {
+    if (e) {
+         window.location='{% url "inicio"%}';
+        alertify.alert("Regresa pronto");
+    } else {
+        alertify.alert("Continua Trabajando");
+    }
+});
+}
+</script>
+                </ul>
+            </aside>
+
+
+
+
+
+        <header>
+            
+        </header>
+       
+        <section id="content">
+                <div class="container">
+
+        <section>
+            
+            <!--<label>Change Theme:</label>
+            <select id="theme">
+                <option value="classic.css">Classic</option>
+                <option value="clean.css">Clean</option>
+            </select>-->
+        
+            <br/>
+            <br/>
+            <br/>
+            
+
+
+            
+                    <div id="example1"></div>
+               
+        </section>
+                </div>
+        </section>
+        <section>
+
+        </code>
+        </pre>
+        </section>
+
+        <script src='{% static "js/jquery3.min.js"%}'></script>
+        <!--<script src="../plugins/gotopage.js"></script>
+        <script src="../plugins/ajaxpaging.js"></script>-->
+        <script src='{% static "js/jquery.columns.min.js"%}'></script>
+        
+
+<!---ESCRIPT QUE CARGA LA TABLA QUE EL USUARIO VISUALIZA-->
+        <script>
+            //example 1 
+            var columns1 = $('#example1').columns({
+                
+            //ARREGLO EN EL CUAL SE VISUALIZAN LAS COLUMNAS DE  NUESTRA TABLA, EN ELLA MEDIANTE UN BUCLE SE IMPRIMEN TODOS LOS RESULTADOS DE LOS USUARIOS
+                data: [
+                    {% for obj in resultados %}
+
+                    //TEXTO DE LA COLUMNA Y VARIABLES CORRESPONDIENTES A CADA CAMPO DEL MODELO "TOTAL_AVANCE"
+                    
+                    	{'Posición': '{{forloop.counter}}', 'Usuario':'{{obj.idusuario.nombre_usuario}}','Correo':'{{obj.idusuario.correo}}', 'Total de Avances':{{obj.total}}*{{base}}+" %"},
+	
+                    {% endfor %}
+
+                ]
+            });
+            
+           
+
+            $('#theme').change(function() {
+                $('#style').attr('href', '{% static "css/"%}'+$(this).val());
+            })
+        </script> 
+
+
+
+
+
+
+
+
+         <script src='{% static "vendors/bower_components/jquery/dist/jquery.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"%}'></script>
+        
+        <script src='{% static "vendors/bower_components/flot/jquery.flot.js"%}'></script>
+        <script src='{% static "vendors/bower_components/flot/jquery.flot.resize.js"%}'></script>
+        <script src='{% static "vendors/bower_components/flot.curvedlines/curvedLines.js"%}'></script>
+        <script src='{% static "vendors/sparklines/jquery.sparkline.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"%}'></script>
+        
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>-
+        <script src="vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"%}'></script>
+        
+                
+        <script src='{% static "js/flot-charts/curved-line-chart.js"%}'></script>
+        <script src='{% static "js/flot-charts/line-chart.js"%}'></script>
+        <script src='{% static "js/charts.js"%}'></script>
+        
+        <script src='{% static "js/charts.js"%}'></script>
+        <script src='{% static "js/functions.js"%}'></script>
+        <script src='{% static "js/demo.js"%}'></script>
+        
+        <script src='{% static "js/Highcharts-4.1.5/js/highcharts.js"%}'></script>
+        <script src='{% static "js/Highcharts-4.1.5/js/modules/exporting.js"%}'></script>  
+        
+    </body>
+</html>

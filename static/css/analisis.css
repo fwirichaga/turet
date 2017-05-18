@@ -1,0 +1,32 @@
+.toggle-switch .ts-label {
+   min-width: 130px;
+}
+
+.estilotextarea3 {
+   height: 15em;
+   width: 1050px;
+   border: 1px dotted #000099;
+   color:#424242;
+   font-size: 14px;
+   display:none;
+}
+
+.analisis{
+   height: 15em;
+   width: 1050px;
+   border: 1px dotted #000099;
+   color:#424242;
+   font-size: 14px;
+
+}
+
+#es{
+   padding: 5px;
+   padding-left: 1200px;
+   color:#fff;
+   font-size:18px;
+}
+            
+[data-current-skin="azul"] {
+   background-color: #08298A;
+} 

@@ -1,0 +1,108 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+    
+<!-- Mirrored from byrushan.com/projects/ma/1-5-2/jquery/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Mar 2016 21:02:49 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Registro</title>
+        
+        <!-- Vendor CSS -->
+        <link href='{% static "vendors/bower_components/animate.css/animate.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"%}' rel="stylesheet">
+            
+        <!-- CSS -->
+        <link href='{% static "css/app.min.1.css"%}' rel="stylesheet">
+        <link href='{% static "css/app.min.2.css"%}' rel="stylesheet">
+    </head>
+    
+    <body class="login-content">
+        <!-- Login -->
+        {% block contenido %}
+        <div class="lc-block toggled" id="l-login">
+         <h3>Registro</h3>
+        Ingresa tus datos verídicos, haz uso correcto de las minúsculas y mayúsculas, ya que el sistema reconce dicha sintaxis
+            <hr>
+            <br>
+            <br>
+            <br>
+            <form name="form" action="{% url 'registro' %}" method="POST">{% csrf_token %}
+            
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                <div class="fg-line">
+                    <input type="text" name="form_nombreusua"class="form-control" placeholder="Nombre de usuario" {{ form.form_nombreusua}}>
+                </div>
+            </div>
+
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                <div class="fg-line">
+                    <input type="text" name="form_nombre"class="form-control" placeholder="Nombre(s)" {{ form.form_nombre}}>
+                </div>
+            </div>
+            
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                <div class="fg-line">
+                    <input type="text" name="form_apellido" class="form-control" placeholder="Apellidos" {{ form.form_apellido}}>
+                </div>
+            </div>
+
+
+             <div class="input-group">
+                <span class="input-group-addon"><i class="zmdi zmdi-lock-outline zmdi-hc-fw"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" placeholder="Contraseña" name="form_password" {{ form.form_password}}>
+                </div>
+            </div>
+                                    
+                                                                     
+                               
+
+            <br/>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                <div class="fg-line">
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo Electrónico" name="form_correo" {{ form.form_correo}}>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a></button>
+            <!--<input type="submit" value="Enviar">-->
+            </form>
+            <div class="clearfix"></div>
+            
+
+            
+            <!--<a href='{% url "principal"%}' class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>-->
+           
+            <br>
+
+            <form name="logeo" action='{% url "inicio"%}' method="post">{% csrf_token %}
+                 <button type = "submit" class="btn btn-default btn-icon"><i class="zmdi zmdi-home"><a href= '{% url "inicio"%}'></a></i></button>
+                 </form>
+        </div>
+
+        {% endblock %}
+     
+        <!-- Javascript Libraries -->
+        <script src='{% static "vendors/bower_components/jquery/dist/jquery.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"%}'></script>
+        
+        <script src='{% static "vendors/bower_components/Waves/dist/waves.min.js"%}'></script>
+        
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+        
+        <script src='{% static "js/functions.js"%}'></script>
+        
+    </body>
+
+<!-- Mirrored from byrushan.com/projects/ma/1-5-2/jquery/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Mar 2016 21:02:49 GMT -->
+</html>

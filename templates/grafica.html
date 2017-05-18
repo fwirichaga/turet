@@ -1,0 +1,230 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Avances Totales</title>
+
+		<script src='{% static "js/jquerydos.min.js"%}'></script>
+        <link href='{% static "css/app.min.1.css"%}' rel="stylesheet">
+        <link href='{% static "css/app.min.2.css"%}' rel="stylesheet">
+        <link href='{% static "css/estilo_formulario.css"%}' rel="stylesheet">
+
+
+
+        <link href='{% static "vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/animate.css/animate.min.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"%}' rel="stylesheet"> 
+        <link href='{% static "css/app.min.1.css" %}' rel="stylesheet">
+        <link href='{% static "css/app.min.2.css" %}' rel="stylesheet">
+        <link href='{% static "css/bootstrap.min.css" %}' rel="stylesheet"><!--barra de progreso-->
+        <link href='{% static "css/contenedores.css" %}' rel="stylesheet" >
+        <link href='{% static "css/estilo_formulario.css" %}' rel="stylesheet" >
+        <link href='{% static "css/analisis.css"%}' rel="stylesheet">
+
+        
+        
+		<style type="text/css">
+        ${demo.css}
+		</style>
+
+<!--FUNCION QUE SE EJECUTA AL INICIAR EL ARCHIVO-->
+        <script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+ 
+
+        title: {
+            text: 'Avance total de las siete secciones' /*TITULO DEL CONTENEDOR DONDE SE ENCUENTRA LA GRAFICA*/
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Total de avances',
+
+/*PARTES DE LA GRAFICA DONDE VISUALIZA SUS RESULTADOS EL ALUMNO, EN ELLA SE IMPRIMEN LOS DATOS CORRESPONDIENTES AL APARTADO "GRAFICA" SITUADA EN EL ARCHIVO VIEW.PY*/        
+            data: [
+                ['Densidad',    {{total_densidad}}],
+                ['Sofisticacion',  {{total_sofisticacion}}],
+                ['Variedad',   {{total_variedad}}],
+                ['Restante',   {{restante}}],
+            ]
+        }]
+    });
+});
+
+
+        </script>
+		
+	</head>
+	<body>
+
+    <header id="header" class="clearfix" data-current-skin="azul">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+
+<!--TITULO DEL BANNER DEL ARCHIVO-->
+                <li class="logo hidden-xs">
+                    <a href="#">TUTOR DE PROYECTOS DE INVESTIGACION</a>
+                </li>
+
+<!--BOTON QUE NOS REDIRECCIONA A LA PAGINA PRINCIPAL-->
+                <a href='{% url "principal"%}'><li id="es" class="logo hidden-xs">Regresar</li></a>
+
+
+            <!-- Top Search Content -->
+         
+        </header>
+
+
+    <section id="main" data-layout="layout-1">
+           <aside id="sidebar" class="sidebar c-overflow">
+           
+
+                <ul class="main-menu">
+                   
+              
+                
+<!--TEXTO Y DIRECCIONES DEL MENU LATERAL, CORRESPONDIENTES A CADA UNA DE LAS SECCIONES DEL SISTEMA-->
+                    <li >
+                        <a href='{% url "hipotesis"%}'><i class="zmdi zmdi-book"></i> Evaluacion de Hipotesis</a>
+                        
+                    </li>
+
+                    <li >
+                    
+                        <a href='{% url "justificacion"%}'><i class="zmdi zmdi-book"></i> Evaluacion de Justificacion</a>
+                        
+                    </li>
+                    
+
+                    <li >
+                        <a href='{% url "objetivo"%}'><i class="zmdi zmdi-book"></i> Evaluacion del Objetivo</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "planteamiento"%}'><i class="zmdi zmdi-book"></i> Evaluacion del Planteamiento</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "preguntas"%}'><i class="zmdi zmdi-book"></i> Evaluación de Preguntas</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "metodologia"%}'><i class="zmdi zmdi-book"></i> Evaluación de Metodología</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "conclusion"%}'><i class="zmdi zmdi-book"></i> Evaluación de Conclusión</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a  id="cierre" onclick="JSalert()"><i class="zmdi zmdi-power"></i> Cerrar Sesión</a>
+                        
+                    </li>
+
+
+<script>
+function JSalert(){
+// A confirm dialog
+alertify.confirm("¿Estas seguro que quieres Cerrar Sesión?", function (e) {
+    if (e) {
+         window.location='{% url "inicio"%}';
+        alertify.alert("Regresa pronto");
+    } else {
+        alertify.alert("Continua Trabajando");
+    }
+});
+}
+</script>
+
+                </ul>
+            </aside>
+
+    <section id="content">
+        <div class="container">
+        <!--<div>Densidad: {{total_densidad}}<br/>Sofisticacion: {{total_sofisticacion}}<br/>Variedad: {{total_variedad}}</div>-->
+
+
+
+
+<center><div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div></center>
+
+
+
+        
+
+
+    </div>
+    </section>
+    
+        <script src='{% static "vendors/bower_components/jquery/dist/jquery.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"%}'></script>
+        
+        <script src='{% static "vendors/bower_components/flot/jquery.flot.js"%}'></script>
+        <script src='{% static "vendors/bower_components/flot/jquery.flot.resize.js"%}'></script>
+        <script src='{% static "vendors/bower_components/flot.curvedlines/curvedLines.js"%}'></script>
+        <script src='{% static "vendors/sparklines/jquery.sparkline.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"%}'></script>
+        
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>-
+        <script src="vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"%}'></script>
+        
+                
+        <script src='{% static "js/flot-charts/curved-line-chart.js"%}'></script>
+        <script src='{% static "js/flot-charts/line-chart.js"%}'></script>
+        <script src='{% static "js/charts.js"%}'></script>
+        
+        <script src='{% static "js/charts.js"%}'></script>
+        <script src='{% static "js/functions.js"%}'></script>
+        <script src='{% static "js/demo.js"%}'></script>
+        
+        <script src='{% static "js/Highcharts-4.1.5/js/highcharts.js"%}'></script>
+        <script src='{% static "js/Highcharts-4.1.5/js/modules/exporting.js"%}'></script>
+	</body>
+</html>

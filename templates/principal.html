@@ -1,0 +1,899 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    
+
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TUTOR | EVALUACIONES</title>
+
+<!--Cargada de archivos css para darle estilos a los archivos-->
+
+    <link rel="stylesheet" href='{% static "style.css"%}' />
+    <script src='{% static "alert/dist/alertify.min.js"%}'></script>
+    <link rel="stylesheet" href='{% static "alert/dist/alertify.core.css"%}' />
+    <link rel="stylesheet" href='{% static "alert/dist/alertify.default.css"%}' id="toggleCSS" />
+
+<!--Script correspondoente a la barra de progreso, en ella se imprimen las variables de contexto que le enviamos a nustro archivo-->
+<script>
+    function progreso(){
+        //$(".progress-bar").css("width", "{{avances}}").attr("aria-valuenow", "{{avances}}").text("{{avances}}"+"%");
+        $("#hipotesis").css("width", "{{avances_hipo}}").attr("aria-valuenow", "100%").text("{{porcentaje_hipo}}" + "%");
+        $("#justificacion").css("width", "{{avances_justi}}").attr("aria-valuenow", "100%").text("{{porcentaje_justi}}" + "%");
+        $("#objetivo").css("width", "{{avances_objetivo}}").attr("aria-valuenow", "20%").text("{{porcentaje_objetivo}}" + "%");
+        $("#planteamiento").css("width", "{{avances_planteamiento}}").attr("aria-valuenow", "60%").text("{{porcentaje_planteamiento}}" + "%");
+        $("#preguntas").css("width", "{{avances_preguntas}}").attr("aria-valuenow", "80%").text("{{porcentaje_preguntas}}" + "%");
+        $("#metodologia").css("width", "{{avances_metodologia}}").attr("aria-valuenow", "10%").text("{{porcentaje_metodologia}}" + "%");
+        $("#conclusion").css("width", "{{avances_conclusion}}").attr("aria-valuenow", "10%").text("{{porcentaje_conclusion}}" + "%");
+    }
+    window.onload=progreso;
+</script>
+       
+
+<style>
+.divclass {
+  background: #415665;
+  height: 50px;
+  width:200px;
+  border-radius: 15px;
+  padding:20px;
+  font-size:22px;
+  color:#fff;   
+}
+
+#es{
+    padding: 5px;
+    padding-left: 500px;
+    color:#fff;
+    font-size:18px;
+}
+#pa{
+   text-indent:20px; 
+   text-align: justify; 
+   font-weight: bold;
+   margin-bottom:5px;
+
+}
+
+[data-current-skin="azul"] {
+background-color: #08298A;
+} 
+</style> 
+
+        <!-- Vendor CSS -->
+        <link href='{% static "vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/animate.css/animate.min.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" %}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"%}' rel="stylesheet">
+        <link href='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"%}' rel="stylesheet">        
+            
+        <!-- CSS -->
+        <link href='{% static "css/app.min.1.css" %}' rel="stylesheet">
+        <link href='{% static "css/app.min.2.css" %}' rel="stylesheet">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"><!--barra de progreso-->
+        <link href='{% static "css/estilo_formulario.css" %}' rel="stylesheet" >
+        <link href='{% static "css/contenedores_principal.css" %}' rel="stylesheet" >
+        
+    </head>
+    <body>
+        <header id="header" class="clearfix" data-current-skin="azul">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+
+<!--Titulo del encabezado del Banner-->
+                <li class="logo hidden-xs">
+                    <a href="#">TUTOR DE PROYECTOS DE INVESTIGACIÓN</a>
+                </li>
+
+<!--Texto que donde visualiza el usuario su nombre al iniciar sesion mediante una variable de sesion-->                
+                <li id="es" class="logo hidden-xs">Bienvenido: {{request.session.usuario}}</li>
+            
+
+            <!-- Top Search Content -->
+         
+        </header>
+        
+        <section id="main" data-layout="layout-1">
+           <aside id="sidebar" class="sidebar c-overflow">
+           
+
+                <ul class="main-menu">
+                   
+              
+                
+<!--Texto y direcciones que llevan a cada una del menu lateral, dichas direcciones se declaran en el archivo view.py y url.py-->
+                    <li >
+                        <a href='{% url "hipotesis"%}'><i class="zmdi zmdi-book"></i> Evaluación de Hipótesis</a>
+                        
+                    </li>
+
+                    <li >
+                    
+                        <a href='{% url "justificacion"%}'><i class="zmdi zmdi-book"></i> Evaluación de Justificación</a>
+                        
+                    </li>
+                    
+
+                    <li >
+                        <a href='{% url "objetivo"%}'><i class="zmdi zmdi-book"></i> Evaluación del Objetívo</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "planteamiento"%}'><i class="zmdi zmdi-book"></i> Evaluación del Planteamiento</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "preguntas"%}'><i class="zmdi zmdi-book"></i> Evaluación de Preguntas</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "metodologia"%}'><i class="zmdi zmdi-book"></i> Evaluación de Metodología</a>
+                        
+                    </li>
+
+
+                    <li >
+                        <a href='{% url "conclusion"%}'><i class="zmdi zmdi-book"></i> Evaluación de Conclusión</a>
+                        
+                    </li>
+
+
+
+                    <li >
+                        <a  id="cierre" onclick="JSalert()"><i class="zmdi zmdi-power"></i> Cerrar Sesión</a>
+                        
+                    </li>
+
+<!--Funcion para cerrar sesion en ella se llama al archivo inicio despues de que alla cerrado sesion-->
+<script>
+function JSalert(){
+// A confirm dialog
+alertify.confirm("¿Estas seguro que quieres Cerrar Sesión?", function (e) {
+    if (e) {
+         window.location='{% url "inicio"%}';
+        alertify.alert("Regresa pronto");
+    } else {
+        alertify.alert("Continua Trabajando");
+    }
+});
+}
+</script>
+
+                </ul>
+            </aside>
+            
+                 
+            
+            <section id="content" >
+                <div class="container">
+                    <div class="block-header">
+                        
+                        
+                        
+                    </div>
+                    
+                    <!--<div class="card">
+                   
+                        <div class="card-header">
+                            <center><img src="img/bannerConLogo.png" alt=""></center>
+                        </div>
+
+                          
+                      
+                    </div>
+                    -->
+
+                    
+                      
+<!--secciones-->
+<!--Secciones correspondientes a la tesis, cada seccion se crea de manera individual y se recomienda modificar unicamente el texto-->    
+                        <div class="col-sm-4">
+                            <div class="card" >
+                                <div class="card-header bgm-green m-b-20">
+
+                                <!--nombre de la seccion-->
+                                    <h2>Evaluación de <small>Hipótesis</small></h2>
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                
+                 <!--ventana de ayuda que visualiza el usuario, esta se encuentra en cada seccion-->                               
+                                                <li>
+                                                    <a href="#ventanaM">Ayuda</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+
+                <!--boton que redireccion a la pagina correspondiente a cada secion para realizar los analisis-->                    
+                                    <a href='{% url "hipotesis"%}'><button class="btn bgm-lightgreen btn-float waves-effect"><i class="zmdi zmdi-file-text zmdi-hc-fw"></i></button></a>
+                                </div>
+                                <p id="pa">Avances:</p>
+
+                <!--Carga de la barra de progreso en el cual ya se recibieron los parametros al inicio del codigo-->             
+                                 <div class="progress">
+                                    <div class="progress-bar" id='hipotesis' role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="90" style="width: 1%;">
+                                     100%
+                                    </div>
+                                </div>
+                
+                <!--Texto que visualiza el usuario debajo de la barra de progreso en el cual se imprime el resutado mediante variables del apartado vistas de la view-->                
+                                    <p id="pa">Densidad: {{den_hipo}}</p>
+                                    <p id="pa">Sofisticación: {{sofis_hipo}}</p>
+                                    <p id="pa">Variedad: {{varie_hipo}}</p>
+                                
+                            </div>
+                        </div>
+
+            <!--LAS OPERACIONES YA MENCIONADAS SE APLICAN DE IGUAL MANERA AL RESTO DE LAS SECCIONES, NOS LIMITARESMOS A EXPLICARLAS DE NUEVO-->
+                        <div class="col-sm-4">
+                            <div class="card" >
+                                <div class="card-header bgm-blue m-b-20">
+                                    <h2>Evaluación de <small>Justificación</small></h2>
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                
+                 <!--ventana de ayuda que visualiza el usuario, esta se encuentra en cada seccion-->                               
+                                                <li>
+                                                    <a href="#ventanaM1">Ayuda</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    
+                                    <a href='{% url "justificacion"%}'><button class="btn bgm-lightblue btn-float waves-effect"><i class="zmdi zmdi-file-text zmdi-hc-fw"></i></button></a>
+                                </div>
+                                
+                                <p id="pa">Avances:</p>
+                                
+                                <div class="progress">
+                                    <div class="progress-bar" id='justificacion' role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="90" style="width: 1%;">
+                                     100%
+                                    </div>
+                                </div>
+                                
+                                    <p id="pa">Densidad: {{den_justi}}</p>
+                                    <p id="pa">Sofisticación: {{sofis_justi}}</p>
+                                    <p id="pa">Variedad: {{varie_justi}}</p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <div class="card" >
+                                <div class="card-header bgm-red m-b-20">
+                                    <h2>Evaluación de <small>Objetívo</small></h2>
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                
+                 <!--ventana de ayuda que visualiza el usuario, esta se encuentra en cada seccion-->                               
+                                                <li>
+                                                    <a href="#ventanaM2">Ayuda</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    
+                                    <a href='{%url "objetivo"%}'><button class="btn bgm-red2 btn-float waves-effect"><i class="zmdi zmdi-file-text zmdi-hc-fw"></i></button></a>
+                                </div>
+
+                                <p id="pa">Avances:</p>
+                                
+                                <div class="progress">
+                                    <div class="progress-bar" id='objetivo' role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="90" style="width: 1%;">
+                                     100%
+                                    </div>
+                                </div>
+                                
+                                    <p id="pa">Densidad: {{den_objetivo}}</p>
+                                    <p id="pa">Sofisticación: {{sofis_objetivo}}</p>
+                                    <p id="pa">Variedad: {{varie_objetivo}}</p>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <div class="card" >
+                                <div class="card-header bgm-gray m-b-20">
+                                    <h2>Evaluación de <small>Plantemiento</small></h2>
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                
+                 <!--ventana de ayuda que visualiza el usuario, esta se encuentra en cada seccion-->                               
+                                                <li>
+                                                    <a href="#ventanaM3">Ayuda</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    
+                                    <a href='{%url "planteamiento"%}'><button class="btn bgm-gray2 btn-float waves-effect"><i class="zmdi zmdi-file-text zmdi-hc-fw"></i></button></a>
+                                </div>
+                                
+                                <p id="pa">Avances:</p>
+                             
+                                 <div class="progress">
+                                    <div class="progress-bar" id='planteamiento' role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="90" style="width: 1%;">
+                                     100%
+                                    </div>
+                                </div>
+
+                                    <p id="pa">Densidad: {{den_planteamiento}}</p>
+                                    <p id="pa">Sofisticación: {{sofis_planteamiento}}</p>
+                                    <p id="pa">Variedad: {{varie_planteamiento}}</p>
+                            </div>
+                        </div>
+
+
+
+
+                         <div class="col-sm-4">
+                            <div class="card" >
+                                <div class="card-header bgm-indigo m-b-20">
+                                    <h2>Evaluación de <small>Preguntas de investigación</small></h2>
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                
+                 <!--ventana de ayuda que visualiza el usuario, esta se encuentra en cada seccion-->                               
+                                                <li>
+                                                    <a href="#ventanaM4">Ayuda</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    
+                                    <a href='{% url "preguntas"%}'><button class="btn bgm-indigo2 btn-float waves-effect"><i class="zmdi zmdi-file-text zmdi-hc-fw"></i></button></a>
+                                </div>
+
+                                <p id="pa">Avances:</p>
+                             
+                                 <div class="progress">
+                                    <div class="progress-bar" id='preguntas' role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="90" style="width: 1%;">
+                                     100%
+                                    </div>
+                                </div>
+                                
+                                	<p id="pa">Densidad: {{den_preguntas}}</p>
+                                    <p id="pa">Sofisticación: {{sofis_preguntas}}</p>
+                                    <p id="pa">Variedad: {{varie_preguntas}}</p>
+
+                            </div>
+                        </div>
+
+
+
+                         <div class="col-sm-4">
+                            <div class="card" >
+                                <div class="card-header bgm-teal m-b-20">
+                                    <h2>Evaluación de <small>Metodología</small></h2>
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                
+                 <!--ventana de ayuda que visualiza el usuario, esta se encuentra en cada seccion-->                               
+                                                <li>
+                                                    <a href="#ventanaM5">Ayuda</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    
+                                    <a href='{% url "metodologia"%}'><button class="btn bgm-cyan btn-float waves-effect"><i class="zmdi zmdi-file-text zmdi-hc-fw"></i></button></a>
+                                </div>
+
+                                <p id="pa">Avances:</p>
+                             
+                                 <div class="progress">
+                                    <div class="progress-bar" id='metodologia' role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="90" style="width: 1%;">
+                                     100%
+                                    </div>
+                                </div>
+                                
+                                	<p id="pa">Densidad: {{den_metodologia}}</p>
+                                    <p id="pa">Sofisticación: {{sofis_metodologia}}</p>
+                                    <p id="pa">Variedad: {{varie_metodologia}}</p>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-4">
+                            <div class="card" >
+                                <div class="card-header bgm-teal m-b-20">
+                                    <h2>Evaluación de <small>Conclusión</small></h2>
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                
+                 <!--ventana de ayuda que visualiza el usuario, esta se encuentra en cada seccion-->                               
+                                                <li>
+                                                    <a href="#ventanaM6">Ayuda</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    
+                                    <a href='{% url "conclusion"%}'><button class="btn bgm-cyan btn-float waves-effect"><i class="zmdi zmdi-file-text zmdi-hc-fw"></i></button></a>
+                                </div>
+                               
+                               <p id="pa">Avánces:</p>
+                             
+                                 <div class="progress">
+                                    <div class="progress-bar" id='conclusion' role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="90" style="width: 1%;">
+                                     100%
+                                    </div>
+                                </div>
+                                
+                                	<p id="pa">Densidad: {{den_conclusion}}</p>
+                                    <p id="pa">Sofisticación: {{sofis_conclusion}}</p>
+                                    <p id="pa">Variedad: {{varie_conclusion}}</p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-sm-4">
+                            <div class="card" >
+                                <div class="card-header bgm-teal m-b-20">
+                                    <h2>Mis avances <small>Avance General</small></h2>
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                
+                 <!--ventana de ayuda que visualiza el usuario, esta se encuentra en cada seccion-->                               
+                                                <li>
+                                                    <a href="#ventanaM7">Ayuda</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    
+                                    <a href='{% url "grafica"%}'><button class="btn bgm-cyan btn-float waves-effect"><i class="zmdi zmdi-file-text zmdi-hc-fw"></i></button></a>
+                                </div>
+                                <div>
+                                    <center>
+                                        <img src='{% static "img/g1.jpg"%}'>
+                                    </center>
+                                </div>
+                                <br/>
+                                <p></p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-4">
+                            <div class="card" >
+                                <div class="card-header bgm-teal m-b-20">
+                                    <h2>Mejores Resultados <small>Resultados Generales</small></h2>
+                                    <ul class="actions actions-alt">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown">
+                                                <i class="zmdi zmdi-more-vert"></i>
+                                            </a>
+
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                
+                 <!--ventana de ayuda que visualiza el usuario, esta se encuentra en cada seccion-->                               
+                                                <li>
+                                                    <a href="#ventanaM8">Ayuda</a>
+                                                </li>
+                                            </ul>
+                                            
+                                        </li>
+                                    </ul>
+                                    
+                                    <a href='{% url "resultados"%}'><button class="btn bgm-cyan btn-float waves-effect"><i class="zmdi zmdi-file-text zmdi-hc-fw"></i></button></a>
+                                </div>
+                                 
+
+                                <div class="lv-body">
+                                    <div class="p-15">
+                                        <div class="lv-item">
+                                            <div class="media">
+                                                <div class="pull-left">
+                                                    1 <i class="zmdi zmdi-star"></i>
+                                                </div>
+                                                
+                                                <div class="pull-right">99 %</div>
+                                                
+                                                <div class="media-body">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="lv-item">
+                                            <div class="media">
+                                                <div class="pull-left">
+                                                    2 <i class="zmdi zmdi-star"></i>
+                                                </div>
+                                                
+                                                <div class="pull-right"> 45 %</div>
+                                                
+                                                <div class="media-body">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        
+                            </div>
+                        </div>
+
+
+
+<!--ventans correspondientes a la etiqueta ayuda, este texto es el que visualizara el usuario al darle click a la etiqueta ayuda correspondiente a cada seccion-->
+               <section id="ventanaM">
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Hipótesis</p>
+                   
+                            <p>La hipótesis....  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+                <section id="ventanaM1">
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Justificación</p>
+                   
+                            <p>La justificación...  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+                <section id="ventanaM2">
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Objetívo</p>
+                   
+                            <p>El objetívo...  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+
+                <section id="ventanaM3">
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Planteamiento</p>
+                   
+                            <p>El planteamiento...  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+
+
+                <section id="ventanaM4">
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Preguntas de Investigación</p>
+                   
+                            <p>Las preguntas...  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+
+
+                <section id="ventanaM5">
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Metodología</p>
+                   
+                            <p>La metodología...  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+
+                <section id="ventanaM6">
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Conclusión</p>
+                   
+                            <p>La conclusión...  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+
+                <section id="ventanaM7">
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Mis avances</p>
+                   
+                            <p>Mis avances...  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+
+                <section id="ventanaM8">
+                    <div class = "formulario">
+                        <div class="contenedor-formulario">
+                            <div class="wrap">
+
+                            <p style="font-weight: bold;">Mejores resultados</p>
+                   
+                            <p>Mejores resultados...  </p>
+
+                            </br>
+                            </br>
+                            
+                            <center><a href=""><button type class="btn btn-primary btn-sm hec-button"> Aceptar</button></a></center>
+
+                            </div>
+                        </div>
+                    </div>    
+                </section>
+
+
+
+
+<!--Texto de pie de pagina de nuestro documento-->
+    </div>  
+        
+        </section>
+        
+  <footer id="footer">
+            Copyright &copy; 2016 TUTOR DE PROYECTOS DE INVESTIGACION
+
+            </ul>
+        </footer>
+
+        <!-- Page Loader -->
+        <!--<div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+
+                <p>Porfavor espera...</p>
+            </div>
+        </div>-->
+        
+       
+        <!-- Javascript Libraries -->
+        <script src='{% static "vendors/bower_components/jquery/dist/jquery.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"%}'></script>
+        
+        <script src='{% static "vendors/bower_components/flot/jquery.flot.js"%}'></script>
+        <script src='{% static "vendors/bower_components/flot/jquery.flot.resize.js"%}'></script>
+        <script src='{% static "vendors/bower_components/flot.curvedlines/curvedLines.js"%}'></script>
+        <script src='{% static "vendors/sparklines/jquery.sparkline.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"%}'></script>
+        
+        <!--<script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>-
+        <script src="vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>-->
+        <script src='{% static "vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"%}'></script>
+        <script src='{% static "vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"%}'></script>
+        
+                
+        <script src='{% static "js/flot-charts/curved-line-chart.js"%}'></script>
+        <script src='{% static "js/flot-charts/line-chart.js"%}'></script>
+        <script src='{% static "js/charts.js"%}'></script>
+        
+        <script src='{% static "js/charts.js"%}'></script>
+        <script src='{% static "js/functions.js"%}'></script>
+        <script src='{% static "js/demo.js"%}'></script>
+
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+-->
+        <script type="text/javascript">
+
+
+            
+            $(window).load(function(){
+                //Welcome Message (not for login page)
+                function notify(message, type){
+                    $.growl({
+                        message: message
+                    },{
+                        type: type,
+                        allow_dismiss: false,
+                        label: 'Cancel',
+                        className: 'btn-xs btn-inverse',
+                        placement: {
+                            from: 'top',
+                            align: 'right'
+                        },
+                        delay: 2500,
+                        animate: {
+                                enter: 'animated fadeIn',
+                                exit: 'animated fadeOut'
+                        },
+                        offset: {
+                            x: 20,
+                            y: 85
+                        }
+                    });
+                };
+                
+                if (!$('.login-content')[0]) {
+                    notify('<?php echo "Bienvenido ".$_SESSION["usuario"]; ?>', 'inverse');
+                } 
+            });
+        </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58067950-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+        
+</body>
+  
+
+</html>
